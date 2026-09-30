@@ -3,365 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lazzat Oshxonasi - Onlayn Menyu</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Poppins', sans-serif; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+    <title>SAMARKAND IJODKORLARI — Adabiyot va She'riyat Portali</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+<body>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="bg-white shadow-sm sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div id="logoBtn" onclick="handleLogoClick()" class="flex items-center gap-3 cursor-pointer select-none group">
-                <div class="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg shadow-amber-500/30 group-hover:scale-105 transition">
-                    <i class="fa-solid fa-utensils"></i>
+    <!-- NAVIGATSIYA -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand" onclick="showTab('home')">
+                <i class="fa-solid fa-feather-pointed brand-icon"></i>
+                <div class="brand-text">
+                    <span class="brand-title">SAMARKAND IJODKORLARI</span>
+                    <span class="brand-sub">Adabiy Portali</span>
                 </div>
-                <div>
-                    <h1 id="headerRestName" class="text-xl font-bold text-gray-900 leading-tight">LAZZAT</h1>
-                    <p id="headerRestSub" class="text-xs text-amber-600 font-medium tracking-wider uppercase">OSHXONASI</p>
-                </div>
+            </a>
+            
+            <div class="nav-links">
+                <button class="nav-btn active" onclick="showTab('home')"><i class="fa-solid fa-house"></i> Bosh sahifa</button>
+                <button class="nav-btn" onclick="showTab('poets')"><i class="fa-solid fa-users"></i> Shoirlar</button>
+                <button class="nav-btn" onclick="showTab('categories')"><i class="fa-solid fa-layer-group"></i> Kategoriyalar</button>
             </div>
 
-            <div class="hidden md:flex flex-1 max-w-md mx-8">
-                <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="searchInput" oninput="filterMenu()" placeholder="Taomlarni qidirish..." class="w-full pl-11 pr-4 py-2.5 bg-gray-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
-                </div>
-            </div>
-
-            <div class="flex items-center gap-3">
-                <button onclick="toggleCart()" class="relative bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-medium flex items-center gap-2 shadow-md shadow-amber-500/20 transition">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="hidden sm:inline">Savat</span>
-                    <span id="cartCountBadge" class="bg-white text-amber-600 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
-                </button>
+            <div class="auth-box" id="auth-nav-box">
+                <!-- JS orqali to'ldiriladi -->
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="bg-gradient-to-r from-amber-600 to-orange-500 rounded-3xl p-6 sm:p-10 text-white mb-8 shadow-xl relative overflow-hidden">
-            <div class="relative z-10 max-w-xl">
-                <span class="bg-white/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-md">Milliy va Yevropa Taomlari</span>
-                <h2 id="bannerTitle" class="text-2xl sm:text-4xl font-extrabold mt-3 leading-tight">Maza va Sifat Uyg'unligi!</h2>
-                <p id="bannerDesc" class="text-white/80 text-sm sm:text-base mt-2">Siz uchun saralangan, eng yangi masalliqlardan tayyorlangan issiq va lazzatli taomlar.</p>
-                <div class="mt-4 flex items-center gap-4 text-xs sm:text-sm">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock"></i> <span id="bannerTime">09:00 - 23:00</span></span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone"></i> <span id="bannerPhone">+998 90 123 45 67</span></span>
+    <!-- BOSH SAHIFA -->
+    <main id="tab-home" class="tab-content active">
+        <section class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="container hero-container">
+                <span class="hero-badge"><i class="fa-solid fa-monument"></i> Samarqand Adabiy Muhiti</span>
+                <h1 class="hero-title">Samarqand Ijodkorlari Portali</h1>
+                <p class="hero-desc">Qadimiy va navqiron Samarqand zaminida ijod qilayotgan shoir va shoiralarning saralangan she'rlari hamda video ijrolari to'plami.</p>
+                
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="main-search" placeholder="Shoir ismi yoki she'r sarlavhasi bo'yicha qidiruv..." onkeyup="filterPoems()">
                 </div>
             </div>
-            <i class="fa-solid fa-bowl-food absolute -right-10 -bottom-10 text-[180px] text-white/10 rotate-12 pointer-events-none"></i>
-        </div>
+        </section>
 
-        <div class="flex items-center gap-2 overflow-x-auto pb-4 hide-scrollbar mb-6" id="categoriesContainer"></div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="menuGrid"></div>
+        <div class="container main-layout">
+            <section class="content-left">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-book-open"></i> So'nggi ijod namunalari</h2>
+                    <div class="filter-pills" id="category-pills">
+                        <button class="pill active" onclick="filterByCategory('all')">Barchasi</button>
+                        <button class="pill" onclick="filterByCategory('Zamonaviy')">Zamonaviy</button>
+                        <button class="pill" onclick="filterByCategory('Mumtoz')">Mumtoz</button>
+                        <button class="pill" onclick="filterByCategory('Audio/Video')">Audio & Video</button>
+                    </div>
+                </div>
+                <div class="feed-grid" id="feed-container"></div>
+            </section>
+
+            <aside class="content-right">
+                <div class="sidebar-card">
+                    <h3><i class="fa-solid fa-star"></i> Taniqli Shoirlar</h3>
+                    <div class="featured-poets-list" id="featured-poets-container"></div>
+                </div>
+                <div class="sidebar-card info-card">
+                    <i class="fa-solid fa-circle-info info-icon"></i>
+                    <h4>Platforma haqida</h4>
+                    <p>Ushbu portal Samarqandlik ijodkorlar asarlarini saqlash va targ'ib qilish uchun xizmat qiladi.</p>
+                </div>
+            </aside>
+        </div>
     </main>
 
-    <!-- SAVAT VA BUYURTMA MODALI -->
-    <div id="cartModal" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity flex justify-end">
-        <div class="bg-white w-full max-w-lg h-full flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-4 border-b flex items-center justify-between bg-gray-50">
-                <h3 class="font-bold text-lg text-gray-800 flex items-center gap-2">
-                    <i class="fa-solid fa-basket-shopping text-amber-500"></i> Savat va Buyurtma
-                </h3>
-                <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+    <!-- SHOIRLAR SAHIFASI -->
+    <main id="tab-poets" class="tab-content">
+        <div class="container page-padding">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-users"></i> Samarqandlik Shoir va Shoiralar</h2>
             </div>
+            <div class="poets-grid" id="poets-directory"></div>
+        </div>
+    </main>
 
-            <div class="flex-1 overflow-y-auto p-4 space-y-4">
-                <div id="cartItemsContainer" class="space-y-3"></div>
+    <!-- KATEGORIYALAR SAHIFASI -->
+    <main id="tab-categories" class="tab-content">
+        <div class="container page-padding">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-layer-group"></i> Ijodiy Yo'nalishlar</h2>
+            </div>
+            <div class="categories-grid" id="categories-list"></div>
+        </div>
+    </main>
 
-                <div class="border-t pt-4 space-y-3">
-                    <div class="flex justify-between font-bold text-lg text-gray-900 pb-2">
-                        <span>Jami:</span>
-                        <span id="cartTotalPrice" class="text-amber-600">0 so'm</span>
-                    </div>
+    <!-- DASHBOARD (SHOIR/ADMIN SHAXSIY KABINETI) -->
+    <main id="tab-dashboard" class="tab-content">
+        <div class="container page-padding">
+            <div class="dashboard-header" id="dashboard-user-info"></div>
 
-                    <div class="grid grid-cols-2 gap-2 bg-gray-100 p-1 rounded-xl">
-                        <button type="button" onclick="setOrderType('dine_in')" id="btnDineIn" class="py-2 text-xs font-bold rounded-lg bg-white shadow text-amber-600">Oshxonada</button>
-                        <button type="button" onclick="setOrderType('delivery')" id="btnDelivery" class="py-2 text-xs font-bold rounded-lg text-gray-600">🛵 Delivery</button>
-                    </div>
-
-                    <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-3 pt-2">
-                        <input type="text" id="custName" placeholder="Ismingiz" required class="w-full px-3 py-2 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-                        <input type="tel" id="custPhone" placeholder="Telefon raqamingiz (+998...)" required class="w-full px-3 py-2 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-
-                        <div id="dineInFields" class="grid grid-cols-3 gap-2">
-                            <div>
-                                <label class="text-[10px] font-semibold text-gray-500 uppercase">Xona / Zal</label>
-                                <select id="custHall" class="w-full px-2 py-2 text-xs border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-                                    <option value="Umumiy Zal">Umumiy Zal</option>
-                                    <option value="VIP Xona 1">VIP Xona 1</option>
-                                    <option value="Kabinet 1">Kabinet 1</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-[10px] font-semibold text-gray-500 uppercase">Stol №</label>
-                                <input type="number" id="custTable" placeholder="Masalan: 5" min="1" class="w-full px-2 py-2 text-xs border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="text-[10px] font-semibold text-gray-500 uppercase">Kishi</label>
-                                <input type="number" id="custChairs" placeholder="4" min="1" class="w-full px-2 py-2 text-xs border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
+            <!-- ADMIN UCHUN -->
+            <div id="admin-panel" class="dashboard-section hidden">
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-user-plus"></i> Yangi Shoir / Shoira profilini yaratish</h3>
+                    <form onsubmit="handleCreateUser(event)" class="form-grid">
+                        <div class="form-group">
+                            <label>Ism va Familiya / Taxallus</label>
+                            <input type="text" id="new-poet-name" placeholder="Masalan: Aziz To'ro" required>
                         </div>
-
-                        <div id="deliveryFields" class="hidden space-y-2">
-                            <input type="text" id="custAddress" placeholder="Manzil (Ko'cha, uy, xonadon)" class="w-full px-3 py-2 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-                            <button type="button" onclick="getCurrentLocation()" id="locBtn" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 font-medium py-2 rounded-lg text-xs flex items-center justify-center gap-2 border border-blue-200 transition">
-                                <i class="fa-solid fa-location-crosshairs"></i> Aniq GPS joylashuvni yuborish
-                            </button>
-                            <input type="hidden" id="custLocation">
-                            <p id="locStatus" class="text-[11px] text-gray-500 text-center"></p>
-                        </div>
-
-                        <div>
-                            <label class="text-[10px] font-semibold text-gray-500 uppercase">To'lov usuli</label>
-                            <select id="payMethod" onchange="togglePayDetails()" class="w-full px-3 py-2 text-xs border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
-                                <option value="Naqd pul">Naqd pul</option>
-                                <option value="Karta orqali (Kassaga)">Karta (Oshxonada)</option>
-                                <option value="Onlayn karta (O'tkazma)">Onlayn Karta O'tkazmasi</option>
+                        <div class="form-group">
+                            <label>Kategoriya / Yo'nalish</label>
+                            <select id="new-poet-cat">
+                                <option value="Zamonaviy she'riyat">Zamonaviy she'riyat</option>
+                                <option value="Mumtoz she'riyat">Mumtoz she'riyat</option>
+                                <option value="Bahr-u Bayt">Bahr-u Bayt</option>
+                                <option value="Bolalar she'riyati">Bolalar she'riyati</option>
                             </select>
                         </div>
-
-                        <!-- Onlayn Karta to'lovi va Chek yuklash -->
-                        <div id="cardPayInfo" class="hidden bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
-                            <div>
-                                <p class="font-bold text-amber-800">Karta raqami (8600...):</p>
-                                <p id="cardNumDisplay" class="text-sm font-mono font-bold text-gray-800">8600 0000 0000 0000</p>
-                            </div>
-                            <div class="border-t border-amber-200 pt-2">
-                                <label class="block font-bold text-gray-700 mb-1">To'lov cheki (Skrinshot) ni yuklang *</label>
-                                <input type="file" id="receiptFile" accept="image/*" class="w-full text-xs text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-white hover:file:bg-amber-600">
-                            </div>
+                        <div class="form-group">
+                            <label>Login (Username)</label>
+                            <input type="text" id="new-poet-login" placeholder="aziz_toro" required>
                         </div>
+                        <div class="form-group">
+                            <label>Parol</label>
+                            <input type="text" id="new-poet-pass" placeholder="Parol kiriting" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Qisqacha tarjimai hol (Bio)</label>
+                            <textarea id="new-poet-bio" rows="2" placeholder="Shoir haqida qisqacha ma'lumot..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width"><i class="fa-solid fa-check"></i> Profilni Tasdiqlash va Yaratish</button>
+                    </form>
+                </div>
 
-                        <button type="submit" id="submitOrderBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl shadow-lg shadow-amber-500/30 transition">
-                            Buyurtmani Tasdiqlash
-                        </button>
+                <div class="card-box margin-top">
+                    <h3><i class="fa-solid fa-users-gear"></i> Mavjud Shoirlar Ro'yxati va Loginlar</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Shoir</th>
+                                    <th>Kategoriya</th>
+                                    <th>Login</th>
+                                    <th>Parol</th>
+                                    <th>Amallar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHOIR UCHUN -->
+            <div id="poet-panel" class="dashboard-section hidden">
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-pen-nib"></i> Yangi ijod namunasini chop etish</h3>
+                    <form onsubmit="handlePublishPoem(event)" class="form-stack">
+                        <div class="form-group">
+                            <label>Asar Sarlavhasi</label>
+                            <input type="text" id="poem-title" placeholder="Masalan: Samarqandim, Salom!" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Format</label>
+                            <select id="poem-type" onchange="toggleVideoInput()">
+                                <option value="text">Matnli She'r</option>
+                                <option value="video">Video Ijro (YouTube Link)</option>
+                            </select>
+                        </div>
+                        <div class="form-group hidden" id="video-url-group">
+                            <label>YouTube Video Havolasi (Link)</label>
+                            <input type="url" id="poem-video-url" placeholder="https://www.youtube.com/watch?v=...">
+                        </div>
+                        <div class="form-group">
+                            <label>She'r Matni</label>
+                            <textarea id="poem-content" rows="8" placeholder="She'r misralarini bu yerga yozing..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Chopt etish</button>
                     </form>
                 </div>
             </div>
         </div>
+    </main>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal-overlay hidden" id="login-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-right-to-bracket"></i> Tizimga Kirish</h3>
+                <button class="close-btn" onclick="toggleModal('login-modal', false)">&times;</button>
+            </div>
+            <form onsubmit="handleLogin(event)" class="form-stack">
+                <div class="form-group">
+                    <label>Login</label>
+                    <input type="text" id="login-username" required placeholder="Masalan: aziz_toro">
+                </div>
+                <div class="form-group">
+                    <label>Parol</label>
+                    <input type="password" id="login-password" required placeholder="******">
+                </div>
+                <p id="login-error" class="error-msg hidden">Login yoki parol noto'g'ri!</p>
+                <button type="submit" class="btn btn-primary full-width">Kirish</button>
+            </form>
+            <div class="demo-accounts-info">
+                <p><strong>Sinov uchun loginlar:</strong></p>
+                <small>• Admin: <code>admin</code> / <code>admin123</code></small><br>
+                <small>• Shoir (Aziz To'ro): <code>aziz_toro</code> / <code>12345</code></small>
+            </div>
+        </div>
     </div>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        const TELEGRAM_BOT_TOKEN = "8633342415:AAETvdwfD-jJqgmSvlvOKd9a6Ef1ByAFj6w";
-        const TELEGRAM_CHAT_ID = "-1004458769291";
+    <!-- POEM DETAIL MODAL -->
+    <div class="modal-overlay hidden" id="poem-modal">
+        <div class="modal-card poem-modal-card">
+            <button class="close-btn" onclick="toggleModal('poem-modal', false)">&times;</button>
+            <div id="poem-modal-content"></div>
+        </div>
+    </div>
 
-        const config = {
-            name: "To'rakulov oshxonasi",
-            phone: "+998951015408",
-            time: "09:00 - 23:00",
-            card: "9860080160535136"
-        };
-
-        const defaultDishes = [
-            { id: 1, name: "Osh (Palov)", category: "Milliy Taomlar", price: 35000, image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500" },
-            { id: 2, name: "Manti (5 dona)", category: "Milliy Taomlar", price: 30000, image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=500" },
-            { id: 3, name: "Lula Kebab", category: "Kebablar", price: 22000, image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500" }
-        ];
-
-        let dishes = JSON.parse(localStorage.getItem('rest_dishes')) || defaultDishes;
-        let cart = JSON.parse(localStorage.getItem('rest_cart')) || [];
-        let orderType = 'dine_in';
-
-        document.addEventListener("DOMContentLoaded", () => {
-            renderCategories();
-            renderDishes();
-            updateCartUI();
-        });
-
-        function renderCategories() {
-            const cats = ['Barchasi', ...new Set(dishes.map(d => d.category))];
-            const container = document.getElementById('categoriesContainer');
-            container.innerHTML = cats.map(cat => `
-                <button onclick="selectCategory('${cat}')" class="px-5 py-2.5 rounded-2xl font-medium text-sm whitespace-nowrap bg-white text-gray-600 border hover:bg-gray-100">
-                    ${cat}
-                </button>
-            `).join('');
-        }
-
-        function renderDishes() {
-            const grid = document.getElementById('menuGrid');
-            grid.innerHTML = dishes.map(dish => `
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition border flex flex-col justify-between">
-                    <div>
-                        <img src="${dish.image}" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <h3 class="font-bold text-gray-800 text-lg">${dish.name}</h3>
-                            <p class="text-amber-600 font-extrabold text-lg mt-2">${dish.price.toLocaleString()} so'm</p>
-                        </div>
-                    </div>
-                    <div class="p-5 pt-0">
-                        <button onclick="addToCart(${dish.id})" class="w-full bg-gray-100 hover:bg-amber-500 hover:text-white text-gray-800 font-semibold py-2.5 rounded-xl transition">
-                            <i class="fa-solid fa-plus"></i> Savatga qo'shish
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function toggleCart() { document.getElementById('cartModal').classList.toggle('hidden'); }
-
-        function addToCart(dishId) {
-            const dish = dishes.find(d => d.id === dishId);
-            const exist = cart.find(i => i.id === dishId);
-            if (exist) exist.qty++;
-            else cart.push({ ...dish, qty: 1 });
-            saveCart();
-            updateCartUI();
-        }
-
-        function saveCart() { localStorage.setItem('rest_cart', JSON.stringify(cart)); }
-
-        function updateCartUI() {
-            const container = document.getElementById('cartItemsContainer');
-            const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-            document.getElementById('cartCountBadge').innerText = totalCount;
-            document.getElementById('cartTotalPrice').innerText = totalPrice.toLocaleString() + " so'm";
-
-            if (cart.length === 0) {
-                container.innerHTML = `<div class="text-center py-8 text-gray-400"><p>Savatingiz bo'sh</p></div>`;
-                return;
-            }
-            container.innerHTML = cart.map(item => `
-                <div class="flex items-center justify-between bg-white p-3 rounded-2xl border">
-                    <div>
-                        <h4 class="font-bold text-sm text-gray-800">${item.name}</h4>
-                        <p class="text-xs text-amber-600 font-semibold">${(item.price * item.qty).toLocaleString()} so'm</p>
-                    </div>
-                    <span class="text-xs font-bold px-2">${item.qty} dona</span>
-                </div>
-            `).join('');
-        }
-
-        function setOrderType(type) {
-            orderType = type;
-            document.getElementById('dineInFields').classList.toggle('hidden', type !== 'dine_in');
-            document.getElementById('deliveryFields').classList.toggle('hidden', type !== 'delivery');
-        }
-
-        function togglePayDetails() {
-            const method = document.getElementById('payMethod').value;
-            document.getElementById('cardPayInfo').classList.toggle('hidden', !method.includes('Onlayn'));
-        }
-
-        function getCurrentLocation() {
-            if (!navigator.geolocation) return alert("GPS qo'llab-quvvatlanmaydi.");
-            navigator.geolocation.getCurrentPosition(pos => {
-                document.getElementById('custLocation').value = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-                document.getElementById('locStatus').innerText = "Joylashuv olindi!";
-            });
-        }
-
-        // TELEGRAM BOTGA YUBORISH (TEXT YOKI PHOTO)
-        async function submitOrder(e) {
-            e.preventDefault();
-            if (cart.length === 0) return alert("Savatingiz bo'sh!");
-
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const payMethod = document.getElementById('payMethod').value;
-            const fileInput = document.getElementById('receiptFile');
-            const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-
-            // Onlayn karta to'lovida chek yuklanishi shart!
-            if (payMethod.includes('Onlayn') && (!fileInput.files || fileInput.files.length === 0)) {
-                return alert("Iltimos, to'lov amalga oshirilganligini tasdiqlovchi chek (skrinshot) rasmini yuklang!");
-            }
-
-            let message = `🛒 <b>YANGI BUYURTMA!</b>\n\n`;
-            message += `👤 <b>Mijoz:</b> ${name}\n`;
-            message += `📞 <b>Tel:</b> ${phone}\n`;
-            message += `💳 <b>To'lov usuli:</b> ${payMethod}\n\n`;
-
-            if (orderType === 'dine_in') {
-                message += `🏛 <b>Xona:</b> ${document.getElementById('custHall').value}\n`;
-                message += `🪑 <b>Stol №:</b> ${document.getElementById('custTable').value || '-'}\n\n`;
-            } else {
-                message += `📍 <b>Manzil:</b> ${document.getElementById('custAddress').value || '-'}\n`;
-                if (document.getElementById('custLocation').value) {
-                    message += `🗺 <b>GPS:</b> ${document.getElementById('custLocation').value}\n\n`;
-                }
-            }
-
-            message += `🍽 <b>Taomlar:</b>\n`;
-            cart.forEach((item, i) => {
-                message += `${i + 1}. ${item.name} x ${item.qty} = ${(item.price * item.qty).toLocaleString()} so'm\n`;
-            });
-            message += `\n💰 <b>Jami:</b> ${totalPrice.toLocaleString()} so'm`;
-
-            // Inline tugmalar (Tasdiqlash va Inkor qilish)
-            const replyMarkup = {
-                inline_keyboard: [
-                    [
-                        { text: "🟢 Tasdiqlash", callback_data: "approve_order" },
-                        { text: "🔴 Inkor qilish", callback_data: "reject_order" }
-                    ]
-                ]
-            };
-
-            const submitBtn = document.getElementById('submitOrderBtn');
-            submitBtn.innerText = "Yuborilmoqda...";
-            submitBtn.disabled = true;
-
-            try {
-                let response;
-                // Agar chek rasmi mavjud bo'lsa `sendPhoto` bilan yuboramiz
-                if (payMethod.includes('Onlayn') && fileInput.files.length > 0) {
-                    const formData = new FormData();
-                    formData.append("chat_id", TELEGRAM_CHAT_ID);
-                    formData.append("photo", fileInput.files[0]);
-                    formData.append("caption", message);
-                    formData.append("parse_mode", "HTML");
-                    formData.append("reply_markup", JSON.stringify(replyMarkup));
-
-                    response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                } else {
-                    // Naqd yoki oddiy to'lov bo'lsa `sendMessage` bilan yuboramiz
-                    response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chat_id: TELEGRAM_CHAT_ID,
-                            text: message,
-                            parse_mode: 'HTML',
-                            reply_markup: replyMarkup
-                        })
-                    });
-                }
-
-                if (response.ok) {
-                    alert(" Buyurtmangiz va to'lov chekingiz muvaffaqiyatli yuborildi! Administrator tasdiqlashini kuting.");
-                    cart = [];
-                    saveCart();
-                    updateCartUI();
-                    toggleCart();
-                    document.getElementById('orderForm').reset();
-                } else {
-                    alert("Xatolik yuz berdi. Bot Token yoki Chat ID ni tekshiring.");
-                }
-            } catch (err) {
-                alert("Tarmoq xatoligi!");
-            } finally {
-                submitBtn.innerText = "Buyurtmani Tasdiqlash";
-                submitBtn.disabled = false;
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
